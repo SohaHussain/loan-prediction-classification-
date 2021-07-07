@@ -214,7 +214,21 @@ for dataset in data:
     dataset['Credit_History']=dataset['Credit_History'].fillna(common_value)
     dataset['Credit_History']=train_df['Credit_History'].astype(int)
 
+# 11. Property_Area
 
+train_df['Property_Area'].unique()
+pa={'Rural':0,'Semiurban':1,'Urban':2}
+data=[train_df,test_df]
+
+for dataset in data:
+    dataset['Property_Area']=dataset['Property_Area'].map(pa)
+
+# 12. Loan_Status
+train_df['Loan_Status'].unique()
+train_df['Loan_Status']=train_df['Loan_Status'].replace(['Y','N'],[1,0])
+
+train_df.head()
+train_df.info()
 
 
 
