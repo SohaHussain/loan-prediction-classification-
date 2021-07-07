@@ -6,6 +6,7 @@ import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
 from matplotlib import style
+from bokeh.plotting import figure,show
 
 
 from sklearn import linear_model
@@ -38,3 +39,11 @@ per1=train_df.isnull().sum()/train_df.isnull().count() *100
 percent=(round(per1,1)).sort_values(ascending=False)
 missing_data=pd.concat([total,percent],axis=1,keys=['total','%'])
 missing_data.head(13)
+
+train_df.columns.values
+
+# DATA PROCESSING
+
+train_df=train_df.drop(['Loan_ID'],axis=1)
+
+
