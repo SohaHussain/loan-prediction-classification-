@@ -136,6 +136,51 @@ data=[train_df,test_df]
 for dataset in data:
     dataset['Self_Employed']=dataset['Self_Employed'].map(se)
 
+# 6. ApplicantIncome
+# no missing value and is already of integer type
+
+# 7.CoapplicantIncome
+
+#I will create an array that contains random numbers, which are computed based on the mean Coapplicantincome value in regards
+#to the standard deviation and is_null.
+
+data = [train_df,test_df]
+for dataset in data:
+    mean=train_df['CoapplicantIncome'].mean()
+    std=test_df['CoapplicantIncome'].std()
+    is_null=dataset['CoapplicantIncome'].isnull().sum()
+
+    # compute random numbers between mean , std, is_null
+    rand_value=np.random.randint(mean-std, mean+std, size=is_null)
+
+    # filling NaN values in age column with random values generated
+    cai_slice= dataset['CoapplicantIncome'].copy()
+    cai_slice[np.isnan(cai_slice)]=rand_value
+    dataset['CoapplicantIncome']=cai_slice
+    dataset['CoapplicantIncome']=train_df['CoapplicantIncome'].astype(int)
+
+train_df['CoapplicantIncome'].isnull().sum()
+
+# 8. LoanAmount
+train_df['LoanAmount'].describe()
+
+data = [train_df,test_df]
+for dataset in data:
+    mean=train_df['LoanAmount'].mean()
+    std=test_df['LoanAmount'].std()
+    is_null=dataset['LoanAmount'].isnull().sum()
+
+    # compute random numbers between mean , std, is_null
+    rand_value=np.random.randint(mean-std, mean+std, size=is_null)
+
+    # filling NaN values in age column with random values generated
+    cai_slice= dataset['LoanAmount'].copy()
+    cai_slice[np.isnan(cai_slice)]=rand_value
+    dataset['LoanAmount']=cai_slice
+    dataset['LoanAmount']=train_df['LoanAmount'].astype(int)
+
+train_df['LoanAmount'].isnull().sum()
+
 
 
 
