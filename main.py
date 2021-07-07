@@ -46,4 +46,22 @@ train_df.columns.values
 
 train_df=train_df.drop(['Loan_ID'],axis=1)
 
+# 1. Gender
+train_df['Gender'].unique()
+# since gender has 13 missing values we will fill them with the most common one
+
+train_df['Gender'].describe()
+common_value='Male'
+data=[train_df,test_df]
+for dataset in data:
+    dataset['Gender']=dataset['Gender'].fillna(common_value)
+
+# converting gender
+genders={'Male':0,'Female':1}
+data=[train_df,test_df]
+
+for dataset in data:
+    dataset['Gender']=dataset['Gender'].map(genders)
+
+
 
