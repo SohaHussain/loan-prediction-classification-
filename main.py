@@ -230,5 +230,7 @@ train_df['Loan_Status']=train_df['Loan_Status'].replace(['Y','N'],[1,0])
 train_df.head()
 train_df.info()
 
+sns.barplot(x='Gender',y='Loan_Status',data=train_df)
+
 
 
