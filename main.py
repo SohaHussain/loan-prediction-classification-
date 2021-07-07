@@ -181,6 +181,39 @@ for dataset in data:
 
 train_df['LoanAmount'].isnull().sum()
 
+# 9.Loan_Amount_Term
+
+train_df['Loan_Amount_Term'].unique()
+train_df['Loan_Amount_Term'].describe()
+
+data = [train_df,test_df]
+for dataset in data:
+    mean=train_df['Loan_Amount_Term'].mean()
+    std=test_df['Loan_Amount_Term'].std()
+    is_null=dataset['Loan_Amount_Term'].isnull().sum()
+
+    # compute random numbers between mean , std, is_null
+    rand_value=np.random.randint(mean-std, mean+std, size=is_null)
+
+    # filling NaN values in age column with random values generated
+    cai_slice= dataset['Loan_Amount_Term'].copy()
+    cai_slice[np.isnan(cai_slice)]=rand_value
+    dataset['Loan_Amount_Term']=cai_slice
+    dataset['Loan_Amount_Term']=train_df['Loan_Amount_Term'].astype(int)
+
+train_df['Loan_Amount_Term'].isnull().sum()
+
+# 10. Credit_History
+
+train_df['Credit_History'].unique()
+train_df['Credit_History'].describe()
+
+common_value=1
+data=[train_df,test_df]
+for dataset in data:
+    dataset['Credit_History']=dataset['Credit_History'].fillna(common_value)
+    dataset['Credit_History']=train_df['Credit_History'].astype(int)
+
 
 
 
