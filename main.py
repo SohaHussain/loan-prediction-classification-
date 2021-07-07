@@ -115,6 +115,27 @@ data=[train_df,test_df]
 for dataset in data:
     dataset['Education']=dataset['Education'].map(edu)
 
+# 5. Self_Employed
+
+train_df['Self_Employed'].unique()
+
+# self employed has 32 missing values
+
+train_df['Self_Employed'].describe()
+
+common_value='No'
+data=[train_df,test_df]
+for dataset in data:
+    dataset['Self_Employed']=dataset['Self_Employed'].fillna(common_value)
+
+# converting self employed
+
+se={'Yes':1,'No':0}
+data=[train_df,test_df]
+
+for dataset in data:
+    dataset['Self_Employed']=dataset['Self_Employed'].map(se)
+
 
 
 
