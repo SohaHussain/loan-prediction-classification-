@@ -30,3 +30,11 @@ train_df.info()
 # 1 integer and 8 objects
 
 train_df.describe()
+
+# lets take a more detailed look at what data is missing
+
+total=train_df.isnull().sum().sort_values(ascending=False)
+per1=train_df.isnull().sum()/train_df.isnull().count() *100
+percent=(round(per1,1)).sort_values(ascending=False)
+missing_data=pd.concat([total,percent],axis=1,keys=['total','%'])
+missing_data.head(13)
