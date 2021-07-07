@@ -63,5 +63,24 @@ data=[train_df,test_df]
 for dataset in data:
     dataset['Gender']=dataset['Gender'].map(genders)
 
+# 2. Married
+train_df['Married'].unique()
+# since married has 3 missing values we will fill them with the most common one
+
+train_df['Married'].describe()
+common_value='Yes'
+data=[train_df,test_df]
+for dataset in data:
+    dataset['Married']=dataset['Married'].fillna(common_value)
+
+# converting Married
+
+ms={'No':0,'Yes':1}
+data=[train_df,test_df]
+
+for dataset in data:
+    dataset['Married']=dataset['Married'].map(ms)
+
+
 
 
