@@ -81,6 +81,41 @@ data=[train_df,test_df]
 for dataset in data:
     dataset['Married']=dataset['Married'].map(ms)
 
+# 3. Dependents
+
+train_df['Dependents'].unique()
+
+# dependents has 15 missing values
+
+train_df['Dependents'].describe()
+
+common_value='0'
+data=[train_df,test_df]
+for dataset in data:
+    dataset['Dependents']=dataset['Dependents'].fillna(common_value)
+
+# converting Dependents
+
+dep={'0':0,'1':1,'2':2,'3+':3}
+data=[train_df,test_df]
+
+for dataset in data:
+    dataset['Dependents']=dataset['Dependents'].map(dep)
+
+# 4. Education
+
+train_df['Education'].unique()
+
+# education has no missing values so we will convert it
+# converting education
+
+edu={'Graduate':1,'Not Graduate':0}
+data=[train_df,test_df]
+
+for dataset in data:
+    dataset['Education']=dataset['Education'].map(edu)
+
+
 
 
 
